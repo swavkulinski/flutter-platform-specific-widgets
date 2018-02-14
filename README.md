@@ -1,6 +1,10 @@
-# ui_switch_lab
+# Old good factory
 
-A new Flutter project.
+Main obstacle I see in creating native experience on Flutter is the fact that you are asked to rebuild two layouts using platform specific widgets e.g. *CupertinoButton* and *FlatButton*, *CupertinoNavBar* ro *AppBar*.
+
+Instead of writing entire layout twice why not make widgets aware of the platform and provide specific implementation.
+
+Solution is to use abstract widget which will provide two (or more in the future) implementations. 
 
 ## Getting Started
 
