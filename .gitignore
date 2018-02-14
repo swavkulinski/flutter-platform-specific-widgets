@@ -1,0 +1,15 @@
+.DS_Store
+.atom/
+.idea
+.packages
+.pub/
+build/
+ios/.generated/
+ios/Podfile.lock
+packages
+pubspec.lock
+.flutter-plugins
+build/
+doc/api/
+fastlane
+ios/Podfile.lock
