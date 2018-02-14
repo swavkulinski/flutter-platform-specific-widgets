@@ -5,6 +5,7 @@ import 'package:ui_switch_lab/platform_widget.dart';
 
 void main() {
   //debugPaintLayerBordersEnabled = true;
+  //debugPaintSizeEnabled = true;
   runApp(new MyApp());
 }
 
@@ -40,49 +41,54 @@ class _MyHomePageState extends State<MyHomePage> {
         child: new ListView.builder(
           itemCount: _switch.length,
           itemBuilder: (context, index) => new ItemWidget(
-                child: new Padding(
+                child: new ConstrainedBox(
+                
+                  constraints: const BoxConstraints.expand(height: 120.0),
+                  child: new Padding(
                   padding: const EdgeInsets.all(10.0),
-                  child: new Flex(
+                  child: new Align (
+                    alignment: const Alignment(-1.0, -1.0),
+                    child: new Flex(
                       direction: Axis.horizontal,
                       mainAxisSize: MainAxisSize.max,
                       children: <Widget>[
                         _imageWidget('/assets/images/dummy.jpg'),
                         _spacerWidget,
-                        _titleAndDescriptionWidget('title', index),
+                        _titleAndDescriptionWidget('Title', index),
+                        _spacerWidget,
                         _switchWidget(index),
                       ]),
                 ),
               ),
-        ));
+        ))));
   }
 
-  Widget _imageWidget(imageAsset) => new Flexible(
-        flex: 4,
-        fit: FlexFit.tight,
-        child: new Image.asset(imageAsset),
-      );
+  Widget _imageWidget(imageAsset) =>  new Image.asset(imageAsset);
 
   final _spacerWidget = new ConstrainedBox(
     constraints: const BoxConstraints.tightFor(width: 10.0),
   );
 
   Widget _titleAndDescriptionWidget(title, index) => new Flexible(
-      flex: 4,
-      fit: FlexFit.tight,
-      child: new Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisSize: MainAxisSize.max,
-        children: <Widget>[
-          new Text(
-            "$title $index ",
-            style: Theme.of(context).textTheme.display1,
-          ),
-          new Text(
-            "desctiption goes here",
-            style: Theme.of(context).textTheme.body1,
-          ),
-        ],
-      ));
+          flex: 4,
+          fit: FlexFit.loose,
+          child: new Align(
+            alignment: const Alignment(-1.0, -1.0),
+            child:new Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisSize: MainAxisSize.max,
+            children: <Widget>[
+              new Text(
+                "$title $index ",
+                style: Theme.of(context).textTheme.display1,
+              ),
+              new Text(
+                "desctiption goes here",
+                style: Theme.of(context).textTheme.body1,
+              ),
+            ],
+          )));
 
   Widget _switchWidget(index) => new Flexible(
         flex: 1,
